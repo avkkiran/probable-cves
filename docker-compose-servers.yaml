@@ -1,0 +1,32 @@
+
+version: '2'
+
+networks:
+  probable-cves:
+
+services:
+  probable-cves-api:
+    container_name: probable-cves-api
+    build:
+        context: ./
+        dockerfile: ./probable-cves-api/Dockerfile
+    volumes:
+        - ./src:/src
+    ports:
+      - 5000:5000
+    networks:
+      - probable-cves
+
+  probable-cves-ui:
+    container_name: probable-cves-ui
+    build:
+        context: ./
+        dockerfile: ./probable-cves-ui/Dockerfile
+    volumes:
+        - ./src/:/src
+    ports:
+        - 8080:8080
+    links:
+      - probable-cves-api
+    networks:
+      - probable-cves

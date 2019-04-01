@@ -2,7 +2,7 @@ FROM python:3.7.2-slim
 
 WORKDIR /src
 
-COPY ./src /src
+COPY ./probable-cves-api/src /src
 
 EXPOSE 5000
 
