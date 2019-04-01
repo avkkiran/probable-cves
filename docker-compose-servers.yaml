@@ -1,3 +1,25 @@
+# To start the containers
+# docker-compose -f docker-compose-servers.yaml up -d
+# -d = run in detached mode
+
+# To stop the containers
+# docker-compose -f docker-compose-servers.yaml down -v
+# -v = remove volumes as well.
+
+# if we want to see the logs of any container
+# docker logs <container_name>
+
+# if we want to enter the container
+# docker exec -it <container_name> bash
+
+# To remove an image
+# docker rmi <image_id/image_name>
+
+# To stop a container
+# docker stop <container_id>
+
+# To remove a container
+# docker rm <container_id>
 
 version: '2'
 
@@ -8,8 +30,8 @@ services:
   probable-cves-api:
     container_name: probable-cves-api
     build:
-        context: ./
-        dockerfile: ./probable-cves-api/Dockerfile
+        context: ./probable-cves-api
+        dockerfile: ./Dockerfile
     volumes:
         - ./src:/src
     ports:
@@ -20,8 +42,8 @@ services:
   probable-cves-ui:
     container_name: probable-cves-ui
     build:
-        context: ./
-        dockerfile: ./probable-cves-ui/Dockerfile
+        context: ./probable-cves-ui
+        dockerfile: ./Dockerfile
     volumes:
         - ./src/:/src
     ports:
