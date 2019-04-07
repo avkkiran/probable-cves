@@ -21,7 +21,7 @@
 # To remove a container
 # docker rm <container_id>
 
-version: '2'
+version: '3.4'
 
 networks:
   probable-cves:
@@ -32,6 +32,7 @@ services:
     build:
         context: ./probable-cves-api
         dockerfile: ./Dockerfile
+        # target: base-api
     volumes:
         - ./src:/src
     ports:
@@ -44,6 +45,7 @@ services:
     build:
         context: ./probable-cves-ui
         dockerfile: ./Dockerfile
+        # target: base-ui
     volumes:
         - ./src/:/src
     ports:

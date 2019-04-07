@@ -1,4 +1,4 @@
-FROM registry.centos.org/centos/centos:7
+FROM registry.centos.org/centos/centos:7 as base-ui
 
 RUN mkdir -p /var/www/html
 
@@ -25,3 +25,10 @@ USER apache
 ENTRYPOINT ["/opt/scripts/run.sh"]
 
 CMD ["apache"]
+
+# Prod build. Dev env doesn't run beyond this
+# FROM base-ui as build-ui
+# RUN npm build
+
+# FROM nginx:alpine
+# COPY --from=build-ui /app/build/ /usr/share/nginx/html
